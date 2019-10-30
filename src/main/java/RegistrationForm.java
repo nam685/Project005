@@ -5,11 +5,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class RegistrationForm {
+    private String studentName;
+    private int studentNumber;
+    private Cursus cursus;
+    private UE[] myUEs;
+    private Group[] myGroups;
+
     private JTextField input;
     private JButton clickMeToSubmitButton;
     private JTextArea output;
     private JPanel myPanel;
-    private JTextPane registrationFormTextPane;
 
     public RegistrationForm() {
         clickMeToSubmitButton.addActionListener(new ActionListener() {
@@ -18,6 +23,14 @@ public class RegistrationForm {
                 output.setText(input.getText());
             }
         });
+    }
+
+    public UE[] getMyUEs() {
+        return myUEs;
+    }
+
+    public Group[] getMyGroups() {
+        return myGroups;
     }
 
     public static void main(String[] args) {
