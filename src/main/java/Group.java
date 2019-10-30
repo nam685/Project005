@@ -27,7 +27,8 @@ public class Group {
                 if (p1.getPeriod().coincides(p2)) throw new RuntimeException("Student busy.");
             }
         }
-        if (nbStudent < MAX_STUDENT) this.studentList[nbStudent++] = student;
+        if (nbStudent >= MAX_STUDENT) throw new RuntimeException("Class full.");
+        this.studentList[nbStudent++] = student;
         for (Class p : classList) {
             student.addPeriod(p.getPeriod());
         }

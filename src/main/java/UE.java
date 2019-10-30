@@ -3,6 +3,7 @@ package main.java;
 import java.util.ArrayList;
 
 public class UE {
+
     private String name;
     private static final int MAX_GROUPS = 8;
     private Group[] groupList;
@@ -21,6 +22,10 @@ public class UE {
         this.groupList = new Group[MAX_GROUPS];
         this.nbGroups = 0;
         referenceList.add(reference);
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void createGroup(Class class1,

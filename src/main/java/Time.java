@@ -6,9 +6,12 @@ public class Time {
     private int minute;
     private static String[] weekdays = {"Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
 
-    public Time(int weekDayCode, int hour, int minute) {
+    public Time(int weekDayCode, int hour, int minute) throws IllegalArgumentException {
+        if (weekDayCode < 0 || weekDayCode > 6) throw new IllegalArgumentException("0 for Saturday. 6 for Friday.");
         this.weekDayCode = weekDayCode;
+        if (hour < 0 || hour > 24) throw new IllegalArgumentException("Invalid hour");
         this.hour = hour;
+        if (minute < 0 || minute > 60) throw new IllegalArgumentException("Invalid minute");
         this.minute = minute;
     }
 

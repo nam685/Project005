@@ -47,6 +47,13 @@ public class Departement {
         if (!this.ueList.contains(ue)) this.ueList.add(ue);
     }
 
+    public Cursus getCursusByName(String cursusName) {
+        for (Cursus cursus : cursusList) {
+            if (cursus.getName().equals(cursusName)) return cursus;
+        }
+        return null;
+    }
+
     public UE getUEByReference(String reference) {
         for (UE ue : ueList) {
             if (ue.getReference().equals(reference)) return ue;
@@ -64,11 +71,27 @@ public class Departement {
             this.toDoList.add(form);
     }
 
-    private void processInscriptionDemand(RegistrationForm form) {
+    private void processInscriptionDemand(RegistrationForm form) throws RuntimeException {
         int index = toDoList.indexOf(form);
-        unregisteredStudentList.get(index).setRegistered(true);
-        unregisteredStudentList.remove(index);
-        //TO BE CONTINUED
+        Student student = unregisteredStudentList.remove(index);
+
+        student.setRegistered(true);
+        Cursus cursus = getCursusByName(form.getCursusName());
+        if (cursus == null) throw new RuntimeException("Cursus not found");
+        ArrayList<UE> myUEs = cursus.getUEs();
+        ArrayList<String> UEreferences = form.getUEReferences();
+        ArrayList<Integer> groupNumbers = form.getGroupNumbers();
+        while (!UEreferences.isEmpty()) {
+            String ueRef = UEreferences.remove(UEreferences.size() - 1);
+            int groupNumber = groupNumbers.remove(groupNumbers.size() - 1);
+            UE ue = getUEByReference(ueRef);
+            if (ue == null) throw new RuntimeException("UE not found");
+            Group group = ue.getGroupByGroupNumber(groupNumber);
+            if (group == null) throw new RuntimeException("Group not found");
+            group.addStudent(student);
+        }
+        registeredStudentList.add(student);
+        studentCount++;
     }
 
     public void processAllInscriptionDemand() {
@@ -76,4 +99,5 @@ public class Departement {
             this.processInscriptionDemand(form);
         }
     }
+
 }

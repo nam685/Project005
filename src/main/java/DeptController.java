@@ -26,5 +26,7 @@ public class DeptController {
 
         mathDiscrete.createGroup(class1, class2, class3);
         System.out.println(mathDiscrete.getGroupByGroupNumber(1).toString());
+
+        Student nam = new Student("Nam Le", "nomnamnomnam", "supersecret", 39724408);
     }
 }
