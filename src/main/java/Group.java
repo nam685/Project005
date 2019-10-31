@@ -18,7 +18,7 @@ public class Group {
     }
 
     public void addClass(Class c) {
-        if (nbClass < MAX_CLASS) this.classList[nbClass++] = c;
+        if (nbClass < MAX_CLASS && c != null) this.classList[nbClass++] = c;
     }
 
     public void addStudent(Student student) throws RuntimeException {
