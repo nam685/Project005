@@ -86,6 +86,7 @@ public class Departement {
             int groupNumber = groupNumbers.remove(groupNumbers.size() - 1);
             UE ue = getUEByReference(ueRef);
             if (ue == null) throw new RuntimeException("UE not found");
+            if (!myUEs.contains(ue)) throw new RuntimeException("UE not in cursus");
             Group group = ue.getGroupByGroupNumber(groupNumber);
             if (group == null) throw new RuntimeException("Group not found");
             group.addStudent(student);
