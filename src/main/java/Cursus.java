@@ -22,4 +22,13 @@ public class Cursus {
     public void addUE(UE ue) {
         this.ueList.add(ue);
     }
+
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        s.append("Cursus: ").append(getName()).append(". List of UE:\n");
+        for (UE ue : ueList) {
+            s.append(ue.toString());
+        }
+        return s.toString();
+    }
 }

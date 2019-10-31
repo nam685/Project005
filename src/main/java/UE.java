@@ -44,7 +44,7 @@ public class UE {
 
     public Group getGroupByGroupNumber(int groupNumber) {
         for (Group g : groupList) {
-            if (g.getGroupNumber() == groupNumber) return g;
+            if (g != null && g.getGroupNumber() == groupNumber) return g;
         }
         return null;
     }
@@ -55,5 +55,14 @@ public class UE {
 
     public String getReference() {
         return reference;
+    }
+
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        s.append("UE: ").append(getName()).append(". Groups: \n");
+        for (int i = 0; i < nbGroups; i++) {
+            s.append(groupList[i].toString());
+        }
+        return s.toString();
     }
 }

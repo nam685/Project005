@@ -6,14 +6,15 @@ public class Class {
     private String room;
     private String type;
 
-    public Class(Period period, Teacher teacher, String room, String type) throws IllegalArgumentException {
+    public Class(Period period, Teacher teacher, String room, String type) throws RuntimeException {
         this.period = period;
         this.room = room;
         for (Period p : teacher.getTimeTable()) {
-            if (p.coincides(period)) throw new IllegalArgumentException("Teacher busy.");
+            if (p.coincides(period)) throw new RuntimeException("Teacher busy.");
         }
         this.teacher = teacher;
         this.type = "Cours";
+        teacher.addPeriod(period);
         if (type.equals("TD") || type.equals("TME")) this.type = type;
     }
 
@@ -34,6 +35,6 @@ public class Class {
     }
 
     public String toString() {
-        return String.format("Teacher: %s. %s Room: %s", teacher.getName(), period.toString(), room);
+        return String.format("Teacher %s. %s Room: %s. Type: %s", teacher.getName(), period.toString(), room, type);
     }
 }

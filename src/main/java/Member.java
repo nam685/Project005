@@ -3,10 +3,10 @@ package main.java;
 import java.util.ArrayList;
 
 public abstract class Member {
-    String name;
-    String login;
-    String password;
-    ArrayList<Period> timeTable;
+    private String name;
+    private String login;
+    private String password;
+    private ArrayList<Period> timeTable;
 
     public Member(String name, String login, String password) {
         this.name = name;
@@ -16,7 +16,7 @@ public abstract class Member {
     }
 
     public void addPeriod(Period p) {
-        timeTable.add(p);
+        if (!timeTable.contains(p)) timeTable.add(p);
     }
 
     public ArrayList<Period> getTimeTable() {

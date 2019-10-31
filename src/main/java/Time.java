@@ -1,5 +1,7 @@
 package main.java;
 
+//tested
+
 public class Time {
     private int weekDayCode;
     private int hour;

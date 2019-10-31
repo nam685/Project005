@@ -32,4 +32,8 @@ public class Student extends Member {
         dept.addUnregisteredStudent(this);
         dept.addRegistrationDemand(this.form);
     }
+
+    public String toString() {
+        return "Student " + studentNumber + ". Name: " + getName() + ". Registered: " + isRegistered();
+    }
 }

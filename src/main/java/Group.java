@@ -23,14 +23,16 @@ public class Group {
 
     public void addStudent(Student student) throws RuntimeException {
         for (Class p1 : classList) {
-            for (Period p2 : student.getTimeTable()) {
-                if (p1.getPeriod().coincides(p2)) throw new RuntimeException("Student busy.");
+            if (p1 != null) {
+                for (Period p2 : student.getTimeTable()) {
+                    if (p1.getPeriod().coincides(p2)) throw new RuntimeException("Student busy.");
+                }
             }
         }
         if (nbStudent >= MAX_STUDENT) throw new RuntimeException("Class full.");
         this.studentList[nbStudent++] = student;
         for (Class p : classList) {
-            student.addPeriod(p.getPeriod());
+            if (p != null) student.addPeriod(p.getPeriod());
         }
     }
 
@@ -56,7 +58,9 @@ public class Group {
     public String toString() {
         StringBuilder s = new StringBuilder();
         s.append("Group number ").append(groupNumber).append(". Classes:\n");
-        for (Class c : this.getClassList()) s.append(c.toString()).append("\n");
+        for (int i = 0; i < nbClass; i++) {
+            s.append("Class ").append(i + 1).append(": ").append(classList[i].toString()).append("\n");
+        }
         return s.toString();
     }
 }
