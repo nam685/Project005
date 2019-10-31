@@ -29,6 +29,10 @@ public class Student extends Member {
     }
 
     public void requestRegistration(Departement dept) {
+        if (form.getStudentName() == null || form.getStudentNumber() == 0 || form.getCursusName() == null) {
+            System.out.println("Did you forget to fill the form before submitting it?");
+            return;
+        }
         dept.addUnregisteredStudent(this);
         dept.addRegistrationDemand(this.form);
     }

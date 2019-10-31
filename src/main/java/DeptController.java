@@ -1,32 +1,53 @@
 package main.java;
 
 public class DeptController {
+    private static UE newUE(String name, String website, String reference) {
+        try {
+            return new UE(name, website, reference);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.toString() + " UE instance not created.");
+            for (StackTraceElement s : e.getStackTrace()) System.out.println(s.toString());
+            return null;
+        }
+    }
+
+    private static Class newClass(Period p, Teacher t, String room, String type) {
+        try {
+            return new Class(p, t, room, type);
+        } catch (RuntimeException e) {
+            System.out.println(e.toString() + " Class instance not created.");
+            for (StackTraceElement s : e.getStackTrace()) System.out.println(s.toString());
+            return null;
+        }
+    }
+
+    private static Time newTime(int wdc, int h, int m) {
+        try {
+            return new Time(wdc, h, m);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.toString() + ". Time instance not created.");
+            for (StackTraceElement s : e.getStackTrace()) System.out.println(s.toString());
+            return null;
+        }
+    }
+
+    private static Period newPeriod(Time start, Time end) {
+        try {
+            return new Period(start, end);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.toString() + ". Period instance not created.");
+            for (StackTraceElement s : e.getStackTrace()) System.out.println(s.toString());
+            return null;
+        }
+    }
+
+    /**
+     * Use newUE(), newClass(), newTime()
+     * and newPeriod() as constructors.
+     * <p>
+     * Write the main here.
+     */
     public static void main(String[] args) {
-        Departement dept1 = new Departement("Informatique, Faculty of Science");
-        UE mathDiscrete = new UE("Math Discrete", "https:/mathdiscretewebsite.com", "LU2IN005");
-        dept1.addUE(mathDiscrete);
-        Cursus infoMonoL2 = new Cursus("Informatique Monodisciplinaire L2");
-        dept1.addCursus(infoMonoL2);
-        infoMonoL2.addUE(mathDiscrete);
-        assert (dept1.getUEByReference("LU2IN005").equals(mathDiscrete));
 
-        Teacher schneider = new Teacher("Madame Schneider", "yadayada", "trustno1");
-        Teacher jaume = new Teacher("Monsieur Jaume", "kappa123", "password");
-
-        Period mathPeriod1 = new Period(new Time(5, 8, 45),
-                new Time(5, 10, 30));
-        Period mathPeriod2 = new Period(new Time(5, 10, 45),
-                new Time(5, 12, 30));
-        Period mathPeriod3 = new Period(new Time(5, 14, 0),
-                new Time(5, 15, 45));
-
-        Class class1 = new Class(mathPeriod1, schneider, "Amphi B1", "Cours");
-        Class class2 = new Class(mathPeriod2, jaume, "24-24-104", "TD");
-        Class class3 = new Class(mathPeriod3, jaume, "14-15-106", "TD");
-
-        mathDiscrete.createGroup(class1, class2, class3);
-        System.out.println(mathDiscrete.getGroupByGroupNumber(1).toString());
-
-        Student nam = new Student("Nam Le", "nomnamnomnam", "supersecret", 39724408);
     }
 }

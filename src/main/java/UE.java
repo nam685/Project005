@@ -59,7 +59,7 @@ public class UE {
 
     public String toString() {
         StringBuilder s = new StringBuilder();
-        s.append("UE: ").append(getName()).append(". Groups: \n");
+        s.append("UE: ").append(getName()).append(". Reference: ").append(reference).append(". Groups: \n");
         for (int i = 0; i < nbGroups; i++) {
             s.append(groupList[i].toString());
         }
