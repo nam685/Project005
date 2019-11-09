@@ -26,7 +26,7 @@ public class PeriodTest {
         assert (period1 == null);
         assert (period2 == null);
         Period period3 = newPeriod(time2, time4);
-        Period period4 = newPeriod(time1, time3);
+        Period period4 = newPeriod(time4, time3);
         assert (period3 != null);
         assert (period4 != null);
         System.out.println(period3.coincides(period4));
