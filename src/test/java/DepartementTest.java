@@ -37,7 +37,6 @@ public class DepartementTest {
 
         dept.processAllInscriptionDemand();
 
-        System.out.println(dept.getStudentCount());
-        // expect 1. But this doesn't work yet because we didn't do RegistrationForm
+        System.out.println(dept.getStudentCount()); // expect 1
     }
 }

@@ -57,7 +57,8 @@ public class UE {
         return reference;
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         StringBuilder s = new StringBuilder();
         s.append("UE: ").append(getName()).append(". Reference: ").append(reference).append(". Groups: \n");
         for (int i = 0; i < nbGroups; i++) {

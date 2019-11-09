@@ -9,7 +9,6 @@ public class Student extends Member {
         super(name, login, password);
         this.studentNumber = studentNumber;
         this.isRegistered = false;
-        this.form = new RegistrationForm();
     }
 
     public int getStudentNumber() {
@@ -29,6 +28,15 @@ public class Student extends Member {
     }
 
     public void requestRegistration(Departement dept) {
+    	this.form = new RegistrationForm(getName(), studentNumber, dept);
+        while (!this.form.isFinished()) {
+        	try {
+				Thread.sleep(10);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }
         if (form.getStudentName() == null || form.getStudentNumber() == 0 || form.getCursusName() == null) {
             System.out.println("Did you forget to fill the form before submitting it?");
             return;
@@ -37,7 +45,8 @@ public class Student extends Member {
         dept.addRegistrationDemand(this.form);
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return "Student " + studentNumber + ". Name: " + getName() + ". Registered: " + isRegistered();
     }
 }

@@ -13,11 +13,13 @@ public class StudentTest {
         System.out.println(stud1.getPassword());
         System.out.println(stud1.getTimeTable());
         System.out.println(stud1.isRegistered());
-        stud1.setRegistered(true);
-        System.out.println(stud1.isRegistered());
+        
         RegistrationForm form = stud1.getForm();
         Departement dept = new Departement("fac science");
         stud1.requestRegistration(dept);
         System.out.println(stud1.toString());
+        
+        stud1.setRegistered(true);
+        System.out.println(stud1.isRegistered());
     }
 }

@@ -18,12 +18,20 @@ public class Cursus {
     public ArrayList<UE> getUEs() {
         return ueList;
     }
+    
+    public UE getUEByReference(String reference) {
+        for (UE ue : ueList) {
+            if (ue.getReference().equals(reference)) return ue;
+        }
+        return null;
+    }
 
     public void addUE(UE ue) {
         this.ueList.add(ue);
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         StringBuilder s = new StringBuilder();
         s.append("Cursus: ").append(getName()).append(". List of UE:\n");
         for (UE ue : ueList) {

@@ -34,7 +34,8 @@ public class Class {
         return type;
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return String.format("Teacher %s. %s Room: %s. Type: %s", teacher.getName(), period.toString(), room, type);
     }
 }

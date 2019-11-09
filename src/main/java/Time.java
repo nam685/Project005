@@ -37,7 +37,8 @@ public class Time {
         return weekdays[weekDayCode];
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return String.format("%s, %02d:%02d", this.getWeekDay(), hour, minute);
     }
 }

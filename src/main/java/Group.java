@@ -55,7 +55,8 @@ public class Group {
         return groupNumber;
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         StringBuilder s = new StringBuilder();
         s.append("Group number ").append(groupNumber).append(". Classes:\n");
         for (int i = 0; i < nbClass; i++) {

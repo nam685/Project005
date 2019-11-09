@@ -24,7 +24,8 @@ public class Period {
         return endTime;
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return String.format("From %s to %s.", startTime.toString(), endTime.toString());
     }
 }
