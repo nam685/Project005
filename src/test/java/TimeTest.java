@@ -3,23 +3,13 @@ package test.java;
 import main.java.Time;
 
 public class TimeTest {
-    private static Time newTime(int wdc, int h, int m) {
-        try {
-            return new Time(wdc, h, m);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.toString() + ". Time instance not created.");
-            for (StackTraceElement s : e.getStackTrace()) System.out.println(s.toString());
-            return null;
-        }
-    }
-
     public static void main(String[] args) {
-        Time time1 = newTime(4, 8, 45);
-        Time time2 = newTime(4, 6, 30);
-        Time time3 = newTime(0, 5, 3);
-        Time time5 = newTime(3, 6, 6);
-        Time time6 = newTime(4, 8, 61);
-        Time time7 = newTime(4, 8, 45);
+        Time time1 = Time.createTime(4, 8, 45);
+        Time time2 = Time.createTime(4, 6, 30);
+        Time time3 = Time.createTime(0, 5, 3);
+        Time time5 = Time.createTime(3, 6, 6);
+        Time time6 = Time.createTime(4, 8, 61);
+        Time time7 = Time.createTime(4, 8, 45);
 
         assert (time1 != null);
         assert (time2 != null);

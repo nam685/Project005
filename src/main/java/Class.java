@@ -6,7 +6,7 @@ public class Class {
     private String room;
     private String type;
 
-    public Class(Period period, Teacher teacher, String room, String type) throws RuntimeException {
+    private Class(Period period, Teacher teacher, String room, String type) throws RuntimeException {
         this.period = period;
         this.room = room;
         for (Period p : teacher.getTimeTable()) {
@@ -16,6 +16,16 @@ public class Class {
         this.type = "Cours";
         teacher.addPeriod(period);
         if (type.equals("TD") || type.equals("TME")) this.type = type;
+    }
+
+    public static Class createClass(Period period, Teacher teacher, String room, String type) {
+        try {
+            return new Class(period, teacher, room, type);
+        } catch (RuntimeException e) {
+            System.out.println(e.toString() + " Class instance not created.");
+            for (StackTraceElement s : e.getStackTrace()) System.out.println(s.toString());
+            return null;
+        }
     }
 
     public Period getPeriod() {

@@ -74,25 +74,30 @@ public class Departement {
     private void processInscriptionDemand(RegistrationForm form) throws RuntimeException {
         int index = toDoList.indexOf(form);
         Student student = unregisteredStudentList.remove(index);
-
-        student.setRegistered(true);
-        Cursus cursus = getCursusByName(form.getCursusName());
-        if (cursus == null) throw new RuntimeException("Cursus not found");
-        ArrayList<UE> myUEs = cursus.getUEs();
-        ArrayList<String> UEreferences = form.getUEReferences();
-        ArrayList<Integer> groupNumbers = form.getGroupNumbers();
-        while (!UEreferences.isEmpty()) {
-            String ueRef = UEreferences.remove(UEreferences.size() - 1);
-            int groupNumber = groupNumbers.remove(groupNumbers.size() - 1);
-            UE ue = getUEByReference(ueRef);
-            if (ue == null) throw new RuntimeException("UE not found");
-            if (!myUEs.contains(ue)) throw new RuntimeException("UE not in cursus");
-            Group group = ue.getGroupByGroupNumber(groupNumber);
-            if (group == null) throw new RuntimeException("Group not found");
-            group.addStudent(student);
+        try {
+            String cursusName = form.getCursusName();
+            Cursus cursus = getCursusByName(cursusName);
+            if (cursus == null) throw new RuntimeException("Cursus " + cursusName + " not found");
+            ArrayList<UE> myUEs = cursus.getUEs();
+            ArrayList<String> UEReferences = form.getUEReferences();
+            ArrayList<Integer> groupNumbers = form.getGroupNumbers();
+            while (!UEReferences.isEmpty()) {
+                String ueRef = UEReferences.remove(UEReferences.size() - 1);
+                int groupNumber = groupNumbers.remove(groupNumbers.size() - 1);
+                UE ue = getUEByReference(ueRef);
+                if (ue == null) throw new RuntimeException("UE " + ueRef + " not found");
+                if (!myUEs.contains(ue))
+                    throw new RuntimeException("UE " + ue.getName() + " not in cursus" + cursusName);
+                Group group = ue.getGroupByGroupNumber(groupNumber);
+                if (group == null) throw new RuntimeException("Group " + groupNumber + " not found");
+                group.addStudent(student);
+            }
+            student.setRegistered(true);
+            registeredStudentList.add(student);
+            studentCount++;
+        } catch (RuntimeException e) {
+            System.out.println("Cannot register student " + student.getName());
         }
-        registeredStudentList.add(student);
-        studentCount++;
     }
 
     public void processAllInscriptionDemand() {
@@ -100,5 +105,4 @@ public class Departement {
             this.processInscriptionDemand(form);
         }
     }
-
 }

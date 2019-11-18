@@ -28,14 +28,13 @@ public class Student extends Member {
     }
 
     public void requestRegistration(Departement dept) {
-    	this.form = new RegistrationForm(getName(), studentNumber, dept);
+        this.form = new RegistrationForm(getName(), studentNumber, dept);
         while (!this.form.isFinished()) {
-        	try {
-				Thread.sleep(10);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
         if (form.getStudentName() == null || form.getStudentNumber() == 0 || form.getCursusName() == null) {
             System.out.println("Did you forget to fill the form before submitting it?");
@@ -46,7 +45,7 @@ public class Student extends Member {
     }
 
     @Override
-	public String toString() {
+    public String toString() {
         return "Student " + studentNumber + ". Name: " + getName() + ". Registered: " + isRegistered();
     }
 }

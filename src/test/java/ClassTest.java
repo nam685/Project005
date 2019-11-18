@@ -8,7 +8,7 @@ import main.java.Time;
 public class ClassTest {
     private static Class newClass(Period p, Teacher t, String room, String type) {
         try {
-            return new Class(p, t, room, type);
+            return Class.createClass(p, t, room, type);
         } catch (RuntimeException e) {
             System.out.println(e.toString() + " Class instance not created.");
             for (StackTraceElement s : e.getStackTrace()) System.out.println(s.toString());
@@ -17,12 +17,12 @@ public class ClassTest {
     }
 
     public static void main(String[] args) {
-        Time time2 = new Time(4, 6, 30);
-        Time time3 = new Time(4, 12, 30);
-        Time time4 = new Time(4, 10, 30);
-        Time time5 = new Time(4, 14, 0);
-        Period period3 = new Period(time2, time3);
-        Period period5 = new Period(time4, time5);
+        Time time2 = Time.createTime(4, 6, 30);
+        Time time3 = Time.createTime(4, 12, 30);
+        Time time4 = Time.createTime(4, 10, 30);
+        Time time5 = Time.createTime(4, 14, 0);
+        Period period3 = Period.createPeriod(time2, time3);
+        Period period5 = Period.createPeriod(time4, time5);
         Teacher teacher = new Teacher("schneider", "pootatoo", "123456");
         System.out.println(period3.coincides(period5));
         System.out.println(teacher.getTimeTable());

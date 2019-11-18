@@ -13,7 +13,7 @@ public class UE {
     //guarantees references' uniqueness
     private static ArrayList<String> referenceList = new ArrayList<>();
 
-    public UE(String name, String website, String reference) throws IllegalArgumentException {
+    private UE(String name, String website, String reference) throws IllegalArgumentException {
         if (referenceList.contains(reference))
             throw new IllegalArgumentException("Reference taken.");
         this.name = name;
@@ -24,13 +24,22 @@ public class UE {
         referenceList.add(reference);
     }
 
+    public static UE createUE(String name, String website, String reference) {
+        try {
+            return new UE(name, website, reference);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.toString() + " UE instance not created.");
+            for (StackTraceElement s : e.getStackTrace()) System.out.println(s.toString());
+            return null;
+        }
+    }
+
     public String getName() {
         return name;
     }
 
-    public void createGroup(Class class1,
-                            Class class2, Class class3) {
-        if (this.nbGroups == 8) return;
+    public void createGroup(Class class1, Class class2, Class class3) {
+        if (this.nbGroups >= MAX_GROUPS || this.nbGroups < 0) return;
         Group tmp = new Group(nbGroups + 1);
         tmp.addClass(class1);
         tmp.addClass(class2);
@@ -58,7 +67,7 @@ public class UE {
     }
 
     @Override
-	public String toString() {
+    public String toString() {
         StringBuilder s = new StringBuilder();
         s.append("UE: ").append(getName()).append(". Reference: ").append(reference).append(". Groups: \n");
         for (int i = 0; i < nbGroups; i++) {

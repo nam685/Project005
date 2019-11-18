@@ -15,9 +15,9 @@ public class TeacherTest {
         System.out.println(teacher.getLogin());
         System.out.println(teacher.getPassword());
         System.out.println(teacher.getTimeTable());
-        Time time2 = new Time(4, 6, 30);
-        Time time4 = new Time(4, 10, 30);
-        Period period3 = new Period(time2, time4);
+        Time time2 = Time.createTime(4, 6, 30);
+        Time time4 = Time.createTime(4, 10, 30);
+        Period period3 = Period.createPeriod(time2, time4);
         teacher.addPeriod(period3);
         teacher.addPeriod(period3);
         System.out.println(teacher.getTimeTable());

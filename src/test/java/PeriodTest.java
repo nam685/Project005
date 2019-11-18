@@ -6,7 +6,7 @@ import main.java.Time;
 public class PeriodTest {
     private static Period newPeriod(Time start, Time end) {
         try {
-            return new Period(start, end);
+            return Period.createPeriod(start, end);
         } catch (IllegalArgumentException e) {
             System.out.println(e.toString() + ". Period instance not created.");
             for (StackTraceElement s : e.getStackTrace()) System.out.println(s.toString());
@@ -15,11 +15,11 @@ public class PeriodTest {
     }
 
     public static void main(String[] args) {
-        Time time1 = new Time(4, 8, 45);
-        Time time2 = new Time(4, 6, 30);
-        Time time3 = new Time(4, 12, 30);
-        Time time4 = new Time(4, 10, 30);
-        Time time5 = new Time(4, 14, 0);
+        Time time1 = Time.createTime(4, 8, 45);
+        Time time2 = Time.createTime(4, 6, 30);
+        Time time3 = Time.createTime(4, 12, 30);
+        Time time4 = Time.createTime(4, 10, 30);
+        Time time5 = Time.createTime(4, 14, 0);
 
         Period period1 = newPeriod(time1, time2);
         Period period2 = newPeriod(time1, null);
