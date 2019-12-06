@@ -1,0 +1,13 @@
+#! /bin/bash
+
+resize -s 24 75 | echo " "
+cd ./Classes/
+javac  *.java
+if [ $? -eq 0 ]; then
+  clear
+  java MainController
+  wait $!
+  ./.sup
+else
+  echo "ERREUR compilation"
+fi
